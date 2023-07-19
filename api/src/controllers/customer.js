@@ -48,7 +48,7 @@ class CustomerController {
             if (!customerExists) return httpHelper.notFound('Cliente não encontrado!');
             await CustomerModel.update(
                 { Name, Email },
-                { where: { ID: id } }
+                { where: { id: id } }
             );
             return httpHelper.ok({ message: 'Cliente atualizado com sucesso!' });
         } catch (error) {
@@ -61,9 +61,9 @@ class CustomerController {
         try {
             const { id } = request.params;
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
-            const customerExists = await Customer.findByPk(id);
+            const customerExists = await CustomerModel.findByPk(id);
             if (!customerExists) return httpHelper.notFound('Cliente não encontrado!');
-            await Customer.destroy({ where: { ID: id } });
+            await CustomerModel.destroy({ where: { id: id } });
             return httpHelper.ok({ message: 'Cliente deletado com sucesso!' });
         } catch (error) {
             return httpHelper.internalError(error);

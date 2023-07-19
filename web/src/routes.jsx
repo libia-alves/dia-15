@@ -3,6 +3,9 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Foods } from "./pages/Foods";
+import { Customers } from "./pages/Customers";
+import { Home } from "./pages/Home";
+
 
 import { isAuthenticated } from './utils/is-authenticated';
 
@@ -25,6 +28,15 @@ export function Navigations() {
                 <Route index path="/" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route
+                    path="/home"
+                    element={(
+                        <PrivateRoute>
+                            <Home />
+                        </PrivateRoute>
+                    )}
+                />
+
+                <Route
                     path="/foods"
                     element={(
                         <PrivateRoute>
@@ -32,6 +44,20 @@ export function Navigations() {
                         </PrivateRoute>
                     )}
                 />
+
+
+                <Route
+                    path="/customers"
+                    element={(
+                        <PrivateRoute>
+                            <Customers />
+                        </PrivateRoute>
+                    )}
+                />
+
+              
+
+
             </Routes>
         </BrowserRouter>
     )
