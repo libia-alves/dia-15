@@ -16,8 +16,17 @@ class UserController {
                 Number(process.env.SALT)
             );
             const user = await UserModel.create({
+                nome,
                 email,
+                data_nascimento,
+                celular,
+                cpf,
+                endereço,
                 password: passwordHashed,
+        
+
+
+
             });
             if (!user) return httpHelper.badRequest('Houve um erro ao criar usuário');
             const accessToken = jwt.sign(
