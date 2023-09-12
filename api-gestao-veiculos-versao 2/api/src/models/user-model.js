@@ -10,7 +10,7 @@ class UserModel extends Model {
             Senha: DataTypes.STRING,
             Data_Nascimento: DataTypes.DATE,
             Celular: DataTypes.INTEGER,
-            CPF: DataTypes.INTEGER,
+            CPF: DataTypes.STRING,
             Endereço: DataTypes.STRING
         }, {
             sequelize,
@@ -21,4 +21,3 @@ class UserModel extends Model {
 }
 
 module.exports = { UserModel };
-

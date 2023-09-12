@@ -13,7 +13,7 @@ class EscolaController {
         Contato_Escola,
         Pontos_Embarque_Desembarque,
         Informações_Motoristas,
-        ID_Gestor,
+        id_Gestor,
       } = request.body;
 
       if (!Nome) return httpHelper.badRequest('Parâmetros inválidos!');
@@ -26,7 +26,7 @@ class EscolaController {
         Contato_Escola,
         Pontos_Embarque_Desembarque,
         Informações_Motoristas,
-        ID_Gestor,
+        id_Gestor,
       });
 
       return httpHelper.created(escola);
@@ -55,7 +55,7 @@ class EscolaController {
         Contato_Escola,
         Pontos_Embarque_Desembarque,
         Informações_Motoristas,
-        ID_Gestor,
+        id_Gestor,
       } = request.body;
 
       if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
@@ -71,7 +71,7 @@ class EscolaController {
         Contato_Escola,
         Pontos_Embarque_Desembarque,
         Informações_Motoristas,
-        ID_Gestor,
+        id_Gestor,
       });
 
       return httpHelper.ok({
@@ -91,7 +91,7 @@ class EscolaController {
       const escolaExists = await EscolaModel.findByPk(id);
       if (!escolaExists) return httpHelper.notFound('Escola não encontrada!');
 
-      await EscolaModel.destroy({ where: { ID: id } });
+      await EscolaModel.destroy({ where: { id: id } });
 
       return httpHelper.ok({
         message: 'Escola excluída com sucesso!',

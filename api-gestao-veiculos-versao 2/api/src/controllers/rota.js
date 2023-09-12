@@ -7,19 +7,20 @@ class RotaController {
   async create(request, response) {
     const httpHelper = new HttpHelper(response);
     try {
-      const { Nome_Rota, Descrição_Rota } = request.body;
+      const { Nome_Rota, Descricao_Rota } = request.body;
 
-      if (!Nome_Rota) return httpHelper.badRequest('Parâmetros inválidos!');
+      if (!Nome_Rota || !Descricao_Rota) return httpHelper.badRequest('Parâmetros inválidos!');
 
       // Validações adicionais, se necessário
 
       const rota = await RotaModel.create({
         Nome_Rota,
-        Descrição_Rota,
+        Descricao_Rota
       });
 
       return httpHelper.created(rota);
     } catch (error) {
+        console.log("ROtaController", error)
       return httpHelper.internalError(error);
     }
   }
@@ -38,7 +39,7 @@ class RotaController {
     const httpHelper = new HttpHelper(response);
     try {
       const { id } = request.params;
-      const { Nome_Rota, Descrição_Rota } = request.body;
+      const { Nome_Rota, Descricao_Rota } = request.body;
 
       if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
 
@@ -49,7 +50,7 @@ class RotaController {
 
       await rotaExists.update({
         Nome_Rota,
-        Descrição_Rota,
+        Descricao_Rota,
       });
 
       return httpHelper.ok({
@@ -69,7 +70,7 @@ class RotaController {
       const rotaExists = await RotaModel.findByPk(id);
       if (!rotaExists) return httpHelper.notFound('Rota não encontrada!');
 
-      await RotaModel.destroy({ where: { ID: id } });
+      await RotaModel.destroy({ where: { id: id } });
 
       return httpHelper.ok({
         message: 'Rota excluída com sucesso!',

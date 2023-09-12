@@ -8,24 +8,24 @@ class UserController {
     async register(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
-            const { nome, email, data_nascimento, celular, cpf, endereço, password } = request.body;
-            if (!nome || !email || !data_nascimento || !celular || !cpf || !endereço || !password) {
+            const { Nome, Email, Data_nascimento, Celular, CPF, Endereço, Senha } = request.body;
+            if (!Nome || !Email || !Data_nascimento || !Celular || !CPF || !Endereço || !Senha) {
                 return httpHelper.badRequest('Todos os campos são obrigatórios!');
             }
-            const userAlreadyExists = await UserModel.findOne({ where: { email } });
+            const userAlreadyExists = await UserModel.findOne({ where: { Email } });
             if (userAlreadyExists) return httpHelper.badRequest('E-mail de usuário já cadastrado!');
-            const passwordHashed = await bcrypt.hash(
-                password,
+            const SenhaHashed = await bcrypt.hash(
+                Senha,
                 Number(process.env.SALT)
             );
             const user = await UserModel.create({
-                nome,
-                email,
-                data_nascimento,
-                celular,
-                cpf,
-                endereço,
-                password: passwordHashed,
+                Nome,
+                Email,
+                Data_Nascimento:Data_nascimento,
+                Celular,
+                CPF,
+                Endereço,
+                Senha: SenhaHashed,
             });
             if (!user) return httpHelper.badRequest('Houve um erro ao criar usuário');
             const accessToken = jwt.sign(
@@ -42,12 +42,12 @@ class UserController {
     async login(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
-            const { email, password } = request.body;
-            if (!email || !password) return httpHelper.badRequest('E-mail e senha são obrigatórios!');
-            const userExists = await UserModel.findOne({ where: { email } });
+            const { Email, Senha } = request.body;
+            if (!Email || !Senha) return httpHelper.badRequest('E-mail e senha são obrigatórios!');
+            const userExists = await UserModel.findOne({ where: { Email } });
             if (!userExists) return httpHelper.notFound('Usuário não encontrado!');
-            const isPasswordValid = await bcrypt.compare(password, userExists.password);
-            if (!isPasswordValid) return httpHelper.badRequest('Senha incorreta!');
+            const isSenhaValid = await bcrypt.compare(Senha, userExists.Senha);
+            if (!isSenhaValid) return httpHelper.badRequest('Senha incorreta!');
             const accessToken = jwt.sign(
                 { id: userExists.id },
                 process.env.TOKEN_SECRET,

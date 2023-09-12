@@ -8,7 +8,7 @@ class EscolaModel extends Model {
             Contato_Escola: DataTypes.INTEGER,
             Pontos_Embarque_Desembarque: DataTypes.STRING,
             Informações_Motoristas: DataTypes.STRING,
-            ID_Gestor: DataTypes.INTEGER
+            id_Gestor: DataTypes.INTEGER
         }, {
             sequelize,
             tableName: 'Escolas',

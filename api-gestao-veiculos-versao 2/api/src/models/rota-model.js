@@ -4,7 +4,7 @@ class RotaModel extends Model {
     static init(sequelize) {
         super.init({
             Nome_Rota: DataTypes.INTEGER,
-            Descrição_Rota: DataTypes.STRING
+            Descricao_Rota: DataTypes.STRING
         }, {
             sequelize,
             tableName: 'Rotas',

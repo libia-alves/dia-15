@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Escolas', {
-      ID: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -28,22 +28,15 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      ID_Gestor: {
+      id_Gestor: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'user', // Nome da tabela de referência (Usuários)
-          key: 'ID', // Nome da coluna de referência (ID)
+          key: 'id', // Nome da coluna de referência (ID)
         },
       },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
+     
     });
   },
 

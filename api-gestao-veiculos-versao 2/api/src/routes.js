@@ -31,8 +31,8 @@ routes.put('/veiculo/:id', authMiddleware, veiculoController.update);
 
 routes.post ('/horario', authMiddleware, horarioController.create);
 routes.get ('/horario', authMiddleware, horarioController.getAll);
-routes.delete ('/horario', authMiddleware, horarioController.delete);
-routes.put ('/horario', authMiddleware, horarioController.update);
+routes.delete ('/horario/:id', authMiddleware, horarioController.delete);
+routes.put ('/horario/:id', authMiddleware, horarioController.update);
 
 
 routes.post ('/rota', authMiddleware, rotaController.create);

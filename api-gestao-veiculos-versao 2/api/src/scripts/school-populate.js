@@ -7,7 +7,7 @@ const schools = [
     Contato_Escola: 1234567890,
     Pontos_Embarque_Desembarque: 'Ponto A',
     Informações_Motoristas: 'Informações A',
-    ID_Gestor: 1,
+    id_Gestor: 1,
   },
   // Outras escolas...
 ];

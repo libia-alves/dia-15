@@ -7,9 +7,9 @@ class VeiculoModel extends Model {
             Numero_Placa: DataTypes.STRING,
             Capacidade_Máxima_Passageiros: DataTypes.INTEGER,
             Contato_Motorista: DataTypes.INTEGER,
-            ID_Rotas: DataTypes.INTEGER,
-            ID_Horários: DataTypes.INTEGER,
-            ID_Escola: DataTypes.INTEGER
+            id_Rotas: DataTypes.INTEGER,
+            id_Horario: DataTypes.INTEGER,
+            id_Escolas: DataTypes.INTEGER
         }, {
             sequelize,
             tableName: 'Veiculos',

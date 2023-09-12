@@ -8,29 +8,29 @@ class VeiculoController {
     const httpHelper = new HttpHelper(response);
     try {
       const {
-        Tipo_Veículo,
+        Tipo_Veiculo,
         Numero_Placa,
         Capacidade_Máxima_Passageiros,
         Contato_Motorista,
-        ID_Rotas,
-        ID_Horários,
-        ID_Escola,
+        id_Rotas,
+        id_Horario,
+        id_Escolas,
       } = request.body;
 
-      if (!Tipo_Veículo || !Numero_Placa || !ID_Rotas || !ID_Horários || !ID_Escola) {
+      if (!Tipo_Veiculo || !Numero_Placa || !id_Rotas || !id_Horario || !id_Escolas) {
         return httpHelper.badRequest('Parâmetros inválidos!');
       }
 
       // Validações adicionais, se necessário
 
       const veiculo = await VeiculoModel.create({
-        Tipo_Veículo,
+        Tipo_Veiculo,
         Numero_Placa,
         Capacidade_Máxima_Passageiros,
         Contato_Motorista,
-        ID_Rotas,
-        ID_Horários,
-        ID_Escola,
+        id_Rotas,
+        id_Horario,
+        id_Escolas,
       });
 
       return httpHelper.created(veiculo);
@@ -54,18 +54,19 @@ class VeiculoController {
     try {
       const { id } = request.params;
       const {
-        Tipo_Veículo,
+        Tipo_Veiculo,
         Numero_Placa,
         Capacidade_Máxima_Passageiros,
         Contato_Motorista,
-        ID_Rotas,
-        ID_Horários,
-        ID_Escola,
+        id_Rotas,
+        id_Horario,
+        id_Escolas,
       } = request.body;
 
       if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
 
       // Validações adicionais, se necessário
+
 
       const veiculoExists = await VeiculoModel.findByPk(id);
       if (!veiculoExists) return httpHelper.notFound('Veículo não encontrado!');
@@ -75,9 +76,9 @@ class VeiculoController {
         Numero_Placa,
         Capacidade_Máxima_Passageiros,
         Contato_Motorista,
-        ID_Rotas,
-        ID_Horários,
-        ID_Escola,
+        id_Rotas,
+        id_Horario,
+        id_Escolas,
       });
 
       return httpHelper.ok({
@@ -97,7 +98,7 @@ class VeiculoController {
       const veiculoExists = await VeiculoModel.findByPk(id);
       if (!veiculoExists) return httpHelper.notFound('Veículo não encontrado!');
 
-      await VeiculoModel.destroy({ where: { ID: id } });
+      await VeiculoModel.destroy({ where: { id: id } });
 
       return httpHelper.ok({
         message: 'Veículo excluído com sucesso!',

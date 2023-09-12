@@ -8,26 +8,26 @@ module.exports = {
 
     await queryInterface.addColumn(
       'Veiculos',
-      'ID_Rotas',
+      'id_Rotas',
       {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        references: { model: 'Rotas', key: 'ID' },
+        references: { model: 'Rotas', key: 'id' },
       }
     );
 
 
   await queryInterface.addColumn(
       'Veiculos',
-      'ID_Horario',
+      'id_Horario',
       {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        references: { model: 'Horarios', key: 'ID' },
+        references: { model: 'Horarios', key: 'id' },
       }
     );
 
@@ -35,13 +35,13 @@ module.exports = {
 
   await queryInterface.addColumn(
       'Veiculos',
-      'ID_Escolas',
+      'id_Escolas',
       {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        references: { model: 'Escolas', key: 'ID' },
+        references: { model: 'Escolas', key: 'id' },
       }
     );
   },
@@ -52,11 +52,11 @@ module.exports = {
   async down (queryInterface, Sequelize) {
       
 
-    await queryInterface.removeColumn('Veiculos', 'ID_Rotas');
+    await queryInterface.removeColumn('Veiculos', 'id_Rotas');
   
-    await queryInterface.removeColumn('Veiculos', 'ID_Horario');
+    await queryInterface.removeColumn('Veiculos', 'id_Horario');
   
-    await queryInterface.removeColumn('Veiculos', 'ID_Escolas');
+    await queryInterface.removeColumn('Veiculos', 'id_Escolas');
   
 
   }

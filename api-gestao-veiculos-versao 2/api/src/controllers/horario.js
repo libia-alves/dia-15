@@ -7,15 +7,15 @@ class HorarioController {
   async create(request, response) {
     const httpHelper = new HttpHelper(response);
     try {
-      const { Horário_Partida, Horário_Chegada } = request.body;
+      const { Horario_Partida, Horario_Chegada } = request.body;
 
-      if (!Horário_Partida || !Horário_Chegada) return httpHelper.badRequest('Parâmetros inválidos!');
+      if (!Horario_Partida || !Horario_Chegada) return httpHelper.badRequest('Parâmetros inválidos!');
 
       // Validações adicionais, se necessário
 
       const horario = await HorarioModel.create({
-        Horário_Partida,
-        Horário_Chegada,
+        Horario_Partida,
+        Horario_Chegada,
       });
 
       return httpHelper.created(horario);
@@ -38,22 +38,22 @@ class HorarioController {
     const httpHelper = new HttpHelper(response);
     try {
       const { id } = request.params;
-      const { Horário_Partida, Horário_Chegada } = request.body;
+      const { Horario_Partida, Horario_Chegada } = request.body;
 
       if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
 
       // Validações adicionais, se necessário
 
       const horarioExists = await HorarioModel.findByPk(id);
-      if (!horarioExists) return httpHelper.notFound('Horário não encontrado!');
+      if (!horarioExists) return httpHelper.notFound('Horario não encontrado!');
 
       await horarioExists.update({
-        Horário_Partida,
-        Horário_Chegada,
+        Horario_Partida,
+        Horario_Chegada,
       });
 
       return httpHelper.ok({
-        message: 'Horário atualizado com sucesso!',
+        message: 'Horario atualizado com sucesso!',
       });
     } catch (error) {
       return httpHelper.internalError(error);
@@ -67,12 +67,12 @@ class HorarioController {
       if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
 
       const horarioExists = await HorarioModel.findByPk(id);
-      if (!horarioExists) return httpHelper.notFound('Horário não encontrado!');
+      if (!horarioExists) return httpHelper.notFound('Horario não encontrado!');
 
-      await HorarioModel.destroy({ where: { ID: id } });
+      await HorarioModel.destroy({ where: { id: id } });
 
       return httpHelper.ok({
-        message: 'Horário excluído com sucesso!',
+        message: 'Horario excluído com sucesso!',
       });
     } catch (error) {
       return httpHelper.internalError(error);

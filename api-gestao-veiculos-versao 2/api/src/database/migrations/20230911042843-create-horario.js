@@ -3,27 +3,20 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Horarios', {
-      ID: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      Horário_Partida: {
+      Horario_Partida: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      Horário_Chegada: {
+      Horario_Chegada: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
+     
     });
   },
 
